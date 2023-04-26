@@ -1,0 +1,13 @@
+{% extends 'authentication/base.html' %}
+{% block title %}404 Not Found{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employers/css/404.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>404</h1>
+    <p>Oops! The page you requested could not be found.</p>
+    <a href="{% url 'home' %}">Go back to homepage</a>
+</div>
+{% endblock %}

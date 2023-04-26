@@ -1,0 +1,34 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Applicant Profile - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employees/css/profile.css' %}">
+{% endblock %}
+{% block content %}
+<header>
+    <h1>Applicant Profile</h1>
+</header>
+<main>
+    <h1>Personal Information</h1>
+    <p><span class="label">Full Name:</span> {{ profile.full_name }}</p>
+    <p><span class="label">Email:</span> {{ profile.email }}</p>
+    <p><span class="label">Phone Number:</span> {{ profile.phone_number }}</p>
+    <p><span class="label">Address:</span> {{ profile.address }}</p>
+
+    <h2>Education</h2>
+    <ul>
+        <li>{{profile.education}}</li>
+    </ul>
+
+    <h2>Experience</h2>
+    <ul>
+        <li>{{profile.experience}}</li>
+    </ul>
+
+    <h2>Skills</h2>
+    <ul>
+        <li>{{profile.skills}}</li>
+    </ul>
+    <a href="{% url 'edit-applicant-profile' %}"><button class="btn">Edit Profile</button></a>
+</main>
+{% endblock %}

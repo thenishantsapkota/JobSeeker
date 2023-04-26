@@ -1,0 +1,74 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Edit Profile - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employers/css/profile.css' %}">
+{% endblock %}
+{% block content %}
+<h2 class="profile-header">Complete your profile</h2>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-25">
+                <label for="name">Full Name</label>
+            </div>
+            <div class="col-75">
+                {{form.full_name}}{{form.full_name.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="email">Email</label>
+            </div>
+            <div class="col-75">
+                {{form.email}}{{form.email.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="phone">Mobile Number</label>
+            </div>
+            <div class="col-75">
+                {{form.phone_number}}{{form.phone_number.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="address">Address</label>
+            </div>
+            <div class="col-75">
+                {{form.address}}{{form.address.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="education">Education</label>
+            </div>
+            <div class="col-75">
+                {{form.education}}{{form.education.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="experience">Experience</label>
+            </div>
+            <div class="col-75">
+                {{form.experience}}{{form.experience.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="skills">Skills</label>
+            </div>
+            <div class="col-75">
+                {{form.skills}}{{form.skills.errors}}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

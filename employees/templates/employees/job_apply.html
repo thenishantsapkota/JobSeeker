@@ -1,0 +1,34 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Apply Job - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employers/css/profile.css' %}">
+{% endblock %}
+{% block content %}
+<h2 class="profile-header">Application for {{job.position}}</h2>
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-25">
+                <label for="cover-letter">Cover Letter</label>
+            </div>
+            <div class="col-75">
+                {{form.cover_letter}}{{form.cover_letter.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="resume">Upload your resume</label>
+            </div>
+            <div class="col-75">
+                {{form.resume}}{{form.resume.errors}}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

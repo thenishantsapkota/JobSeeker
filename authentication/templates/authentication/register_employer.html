@@ -1,0 +1,57 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Register - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'authentication/css/styles.css' %}">
+{% endblock %}
+{% block js %}
+<script src="{% static 'authentication/js/login.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container active">
+    <div class="forms">
+        <!-- Registration Form -->
+        <div class="form signup">
+            <span class="title">Registration - Employer</span>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-field">
+                    {{form.username}}{{form.username.errors}}
+                    <i class="uil uil-user"></i>
+                </div>
+                <div class="input-field">
+                    {{form.email}}{{form.email.errors}}
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                <div class="input-field">
+                    {{form.password1}}{{form.password1.errors}}
+                    <i class="uil uil-lock icon"></i>
+                </div>
+                <div class="input-field">
+                    {{form.password2}}{{form.password2.errors}}
+                    <i class="uil uil-lock icon"></i>
+                    <i class="uil uil-eye-slash showHidePw"></i>
+                </div>
+
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="termCon">
+                        <label for="termCon" class="text">I accepted all terms and conditions</label>
+                    </div>
+                </div>
+
+                <div class="input-field button">
+                    <input type="submit" value="Signup">
+                </div>
+            </form>
+
+            <div class="login-signup">
+                <span class="text">Already a member?
+                    <a href="{% url 'login' %}" class="text login-link">Login Now</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Alertify -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Alertify End -->
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- Icons End -->
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Custom CSS and JS File -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .errorlist {
+            color: red;
+            opacity: 50%;
+            list-style-type: none;
+        }
+    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'authentication/css/navbar.css' %}">
+    <script defer src="{% static 'authentication/js/navbar.js' %}"></script>
+    {% block css %}{% endblock %}
+    {% block js %}{% endblock %}
+    <!-- Custom CSS and JS End -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    {% if 'login' not in request.path %}
+    {% if 'register' not in request.path %}
+    <nav class="navbar">
+        <div class="logo_header">
+            <a href="#" class="logo">JobSeeker</a>
+            <button class="navbar_toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+
+        <ul class="main_nav">
+            <li>
+                <a href="{% url 'home' %}" class="nav_links">Home</a>
+            </li>
+            {% if request.user.is_user %}
+            <li>
+                <a href="{% url 'job-listings' %}" class="nav_links">Job Listings</a>
+            </li>
+            <li>
+                <a href="{% url 'applicant-profile' %}" class="nav_links">Applicant Profile</a>
+            </li>
+            <li>
+                <a href="{% url 'my-applications' %}" class="nav_links">My Applications</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_company and not request.user.is_user %}
+            <li>
+                <a href="{% url 'create-listing' %}" class="nav_links">List a Job</a>
+            </li>
+            <li>
+                <a href="{% url 'company-profile' %}" class="nav_links">Profile</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            <li>
+                <a href="{% url 'logout' %}" class="nav_links">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="#" class="nav_links">FAQ</a>
+            </li>
+            <li>
+                <a href="{% url 'login' %}" class="nav_links">Login</a>
+            </li>
+            <li>
+                <a href="{% url 'register' %}" class="nav_links">Register as Applicant</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_superuser %}
+            <li>
+                <a href="/admin" class="nav_links">Admin Panel</a>
+            </li>
+            {% endif %}
+        </ul>
+
+    </nav>
+    {% endif %}
+    {% endif %}
+
+    <!-- End Navbar -->
+    <!-- Main Content -->
+    <div class="content">{% block content %}{% endblock %}</div>
+    {% for message in messages %}
+    <script>
+        alertify.set("notifier", "position", "bottom-center");
+        //{% if message.tags == 'success' %}
+        alertify.success("{{message}}");
+        //{% elif message.tags == 'error' %}
+        alertify.error("{{message}}");
+        //{% endif %}
+    </script>
+    {% endfor %}
+    <script>
+        const links = document.getElementsByClassName('delete-link');
+        for (let i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', function (event) {
+                event.preventDefault();
+                const confirmation = confirm('Are you sure you want to delete this listing?');
+                if (confirmation) {
+                    window.location.href = this.href;
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

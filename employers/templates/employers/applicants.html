@@ -1,0 +1,45 @@
+{% extends 'authentication/base.html' %}
+{% block title %}My Applications - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employees/css/applications.css' %}">
+{% endblock %}
+{% block content %}
+<div class="center">
+    <h1>Applicants for {{job.position}}</h1>
+    {% if applicants %}
+    <table id="applications">
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>CV</th>
+            <th>Actions</th>
+        </tr>
+        {% for data in applicants %}
+        <tr>
+            <td>{{data.applicant.full_name}}</td>
+            <td>{{data.applicant.phone_number}}</td>
+            <td>
+                <a style="color:blue;" href="{{data.resume.url}}">Resume</a>
+            </td>
+            <td>
+                {% if data.is_shortlisted %}
+                <a href="{% url 'shortlist-applicant' data.id %}" style="color:red;">Unshortlist</a>
+                {% else%}
+                <a href=" {% url 'shortlist-applicant' data.id %}" style="color:green;">Shortlist</a>
+                {% endif %}
+                <br>
+                {% if data.is_rejected %}
+                <a href="{% url 'reject-applicant' data.id %}" style="color:green;">Unreject</a>
+                {% else %}
+                <a href=" {% url 'reject-applicant' data.id %}" style="color:red;">Reject</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3 style="text-align: center; color: red;">No Applicants yet!</h3>
+    {% endif %}
+</div>
+{% endblock %}

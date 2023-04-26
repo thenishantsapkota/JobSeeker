@@ -1,0 +1,50 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Edit Profile - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employers/css/profile.css' %}">
+{% endblock %}
+{% block content %}
+<h2 class="profile-header">Complete your profile</h2>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-25">
+                <label for="name">Company Name</label>
+            </div>
+            <div class="col-75">
+                {{form.company_name}}{{form.company_name.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="email">Company Email</label>
+            </div>
+            <div class="col-75">
+                {{form.company_email}}{{form.company_email.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="website">Company Website</label>
+            </div>
+            <div class="col-75">
+                {{form.company_website}}{{form.company_website.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="bio">Company Bio</label>
+            </div>
+            <div class="col-75">
+                {{form.company_bio}}{{form.company_bio.errors}}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

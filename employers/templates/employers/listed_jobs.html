@@ -1,0 +1,44 @@
+{% extends 'authentication/base.html' %}
+{% block title %}My Applications - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employees/css/applications.css' %}">
+{% endblock %}
+{% block content %}
+<div class="center">
+    <h1>Listed Jobs</h1>
+    {% if jobs %}
+    <table id="applications">
+        <tr>
+            <th>Position</th>
+            <th>Company</th>
+            <th>Experience</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        {% for job in jobs %}
+        <tr>
+            <td>{{job.position}}</td>
+            <td>{{job.profile.company_name}}</td>
+            <td>{{job.experience}} years</td>
+            <td>
+                {% if job.is_approved %}
+                Approved
+                {% else %}
+                Pending Approval
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'edit-job' job.id %}">Edit </a> <br>
+                <a class="delete-link" style="color:red;" href="{% url 'delete-job' job.id %}">Delete </a><br><a
+                    href="{% url 'view-applicants' job.id %}">View
+                    Applicants</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3 style="text-align: center; color: red;">No Jobs yet!</h3>
+    {% endif %}
+</div>
+{% endblock %}

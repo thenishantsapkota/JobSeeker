@@ -1,0 +1,27 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Home - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employees/css/home.css' %}">
+{% endblock %}
+{% block content %}
+<section id="hero">
+    <div class="container">
+        <div class="info">
+            <h1>Job Seeker</h1>
+            <h2>The bridge between your aspiration and success</h2>
+            <p>We provide job seekers a platfrom to showcase their skills, find job openings that match their career
+                goals, and apply for those jobs with ease. By doing
+                so, the job portal helps job seekers take a step closer to
+                realizing their aspirations and ultimately finding
+                success in their careers</p>
+            {% if not request.user.is_authenticated %}
+            <a href="{% url 'company-register' %}">Register as Employer</a>
+            {% endif %}
+            {% if request.user.is_company and not request.user.is_user %}
+            <a href="{% url 'listed-jobs' %}">View Listed Jobs</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'authentication/base.html' %}
+{% block title %}My Applications - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employees/css/applications.css' %}">
+{% endblock %}
+{% block js %}
+<script defer src="{% static 'employees/js/listings.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="center">
+    <h1>Available Jobs</h1>
+    {% if jobs %}
+    <div class="container">
+        <input type="text" placeholder="Search.." class="search-bar" id="searchBar">
+    </div>
+    <table id="applications">
+        <tr>
+            <th>Position</th>
+            <th>Company</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+        {% for job in jobs %}
+        <tr>
+            <td>{{job.position}}</td>
+            <td>{{job.profile.company_name}}</td>
+            <td>Rs. {{job.salary}}</td>
+            <td>
+                {% if job in applications %}
+                Applied
+                {% else %}
+                <a style="color:blue;" href="{% url 'job-detail' job.id %}">View More</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h2 style="color:red;text-align: center;">No Jobs Listed!</h2>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'authentication/base.html' %}
+{% block title %}My Applications - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employees/css/applications.css' %}">
+{% endblock %}
+{% block content %}
+<div class="center">
+    <h1>Your Applications</h1>
+    <table id="applications" style="text-align: center;">
+        <tr>
+            <th>Position</th>
+            <th>Company</th>
+            <th>Applied Date</th>
+            <th>Status</th>
+        </tr>
+        {% for application in applications %}
+        <tr>
+            <td>{{application.job_listing.position}}</td>
+            <td>{{application.job_listing.profile.company_name}}</td>
+            <td>{{application.date_applied|date}}</td>
+            <td>
+                {% if application.is_shortlisted %}
+                <span style="color:green;">Shortlisted</span>
+                {% elif application.is_rejected %}
+                <span style="color:red;">Rejected</span>
+                {% else %}
+                Under Review
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

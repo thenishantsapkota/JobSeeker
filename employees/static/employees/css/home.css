@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+body {
+    font-family: "Roboto Mono";
+    font-size: 18px;
+}
+
+#hero {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.342), rgba(0, 0, 0, 0.342)),
+        url("https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") no-repeat center bottom / cover;
+    color: whitesmoke;
+}
+
+.container {
+    width: 90%;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    /*   text-align: center; */
+}
+
+#hero .info h1 {
+    font-size: 3rem;
+    /* text-transform: uppercase; */
+    margin-bottom: 1rem;
+}
+
+#hero .info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#hero .info p {
+    font-size: 1.2rem;
+    max-width: 50%;
+}
+
+#hero .info a {
+    text-decoration: none;
+    display: inline-block;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 1.8rem;
+    padding: 0.5em 2em;
+    margin-top: 2rem;
+    color: #ee6c09;
+}
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 10px;
+    }
+}

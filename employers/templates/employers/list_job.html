@@ -1,0 +1,58 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Edit Profile - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employers/css/profile.css' %}">
+{% endblock %}
+{% block content %}
+<h2 class="profile-header">{% if 'edit-job' in request.path %}Edit{% else %}List{% endif %} a Job</h2>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-25">
+                <label for="position">Position</label>
+            </div>
+            <div class="col-75">
+                {{form.position}}{{form.position.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="experience">Experience Required</label>
+            </div>
+            <div class="col-75">
+                {{form.experience}}{{form.experience.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="type">Job Type</label>
+            </div>
+            <div class="col-75">
+                {{form.type}}{{form.type.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="salary">Approx. Salary</label>
+            </div>
+            <div class="col-75">
+                {{form.salary}}{{form.salary.errors}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="description">Job Description</label>
+            </div>
+            <div class="col-75">
+                {{form.job_description}}{{form.job_description.errors}}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

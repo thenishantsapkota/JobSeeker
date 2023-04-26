@@ -1,0 +1,53 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Login - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'authentication/css/styles.css' %}">
+{% endblock %}
+{% block js %}
+<script defer src="{% static 'authentication/js/login.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="forms">
+        <div class="form login">
+            <span class="title">Login</span>
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-field">
+                    {{form.username}}{{form.username.errors}}
+                    <i class="uil uil-user"></i>
+                </div>
+                <div class="input-field">
+                    {{form.password}}{{form.password.errors}}
+                    <i class="uil uil-lock icon"></i>
+                    <i class="uil uil-eye-slash showHidePw"></i>
+                </div>
+
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        {{form.remember_me}}{{form.remember_me.errors}}
+                        <label for="logCheck" class="text">Remember me</label>
+                    </div>
+
+                    <a href="#" class="text">Forgot password?</a>
+                </div>
+
+                <div class="input-field button">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+
+            <div class="login-signup">
+                <span class="text">Don't have an account?
+                    <a href="{%  url 'register' %}" class="text signup-link">Signup Now</a>
+                </span>
+                <br>
+                <span class="text">Register as Employer?
+                    <a href="{%  url 'company-register' %}" class="text signup-link">Register</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

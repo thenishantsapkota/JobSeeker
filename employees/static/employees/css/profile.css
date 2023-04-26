@@ -1,0 +1,75 @@
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Main styles */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+main h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+main p {
+    font-size: 1.2rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+main .label {
+    font-weight: bold;
+}
+
+main ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main li::before {
+    content: "• ";
+    color: #333;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.btn {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+    main h2 {
+        font-size: 1.2rem;
+    }
+
+    main p {
+        font-size: 1rem;
+    }
+
+    main li::before {
+        font-size: 0.8rem;
+    }
+}

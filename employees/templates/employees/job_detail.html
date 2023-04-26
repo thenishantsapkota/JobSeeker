@@ -1,0 +1,24 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Job Detail - JobSeeker{% endblock %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'employees/css/job_detail.css' %}">
+{% endblock %}
+{% block content %}
+<header>
+    <h1>Details</h1>
+</header>
+<main>
+    <div class="job-listing">
+        <h2>{{ job.position }}</h2>
+        <p><strong>Company:</strong> {{ job.profile.company_name }}</p>
+        <p><strong>Type:</strong> {{ job.type|capfirst }}</p>
+        <p><strong>Experience:</strong> {{ job.experience }} year(s)</p>
+        <p><strong>Salary:</strong> Rs. {{ job.salary|default:"Not specified" }}</p>
+        <hr>
+        <p><strong>Description:</strong></p>
+        <p>{{ job.job_description }}</p>
+        <a href="{% url 'job-apply' job.id %}" class="apply-button">Apply</a>
+    </div>
+</main>
+{% endblock %}
