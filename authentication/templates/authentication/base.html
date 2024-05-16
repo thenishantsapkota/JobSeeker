@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Alertify -->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css" integrity="sha512-O03ntXoVqaGUTAeAmvQ2YSzkCvclZEcPQu1eqloPaHfJ5RuNGiS4l+3duaidD801P50J28EHyonCV06CUlTSag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Alertify End -->
     <!-- Icons -->
     <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
@@ -104,11 +103,16 @@
     <div class="content">{% block content %}{% endblock %}</div>
     {% for message in messages %}
     <script>
-        alertify.set("notifier", "position", "bottom-center");
         //{% if message.tags == 'success' %}
-        alertify.success("{{message}}");
+        iziToast.success({
+            title: 'Success',
+            message: "{{message}}"
+        });
         //{% elif message.tags == 'error' %}
-        alertify.error("{{message}}");
+        iziToast.error({
+            title: 'Error',
+            message: "{{message}}"
+        });
         //{% endif %}
     </script>
     {% endfor %}
